@@ -25,9 +25,9 @@ app.config['EMERGENCY_CAPTURES'] = 'EmergencyCaptures'
 
 # Track recently detected residents with a cooldown period
 RESIDENT_COOLDOWN_SECONDS = 120  # 2 minutes
-resident_last_detected = {}  # Maps resident ID to last detection timestamp
+resident_last_detected = {}  # Maps resident ID to last detection time 
 
-# Add a context processor to make 'now' available to all templates
+# Add a context processor to make 'now' available to the all templates
 @app.context_processor
 def inject_now():
     return {'now': datetime.datetime.now()}
