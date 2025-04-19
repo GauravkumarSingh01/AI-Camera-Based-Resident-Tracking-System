@@ -15,13 +15,15 @@ import base64
 import uuid
 
 app = Flask(__name__)
-app.secret_key = 'track_nest_secret_key'
-app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['TRAINING_FOLDER'] = 'TrainingImage'
-app.config['STUDENT_DETAILS'] = 'StudentDetails'
-app.config['TRACKING_DETAILS'] = 'Tracking_details'
-app.config['UNKNOWN_FACES'] = 'UnknownFaces'
-app.config['EMERGENCY_CAPTURES'] = 'EmergencyCaptures'
+app.secret_key = os.getenv('SECRET_KEY', 'track_nest_secret_key')
+app.config.update({
+    'UPLOAD_FOLDER': 'uploads',
+    'TRAINING_FOLDER': 'TrainingImage',
+    'STUDENT_DETAILS': 'StudentDetails',
+    'TRACKING_DETAILS': 'Tracking_details',
+    'UNKNOWN_FACES': 'UnknownFaces',
+    'EMERGENCY_CAPTURES': 'EmergencyCaptures'
+})
 
 # Track recently detected residents with a cooldown period
 RESIDENT_COOLDOWN_SECONDS = 120  # 2 minutes
