@@ -51,9 +51,9 @@ def login():
     if request.method == 'POST':
         password = request.form.get('password')
         
-        # Check if password file exists
-        if os.path.isfile("TrainingImageLabel/psd.txt"):
-            with open("TrainingImageLabel/psd.txt", "r") as f:
+        password_file = "TrainingImageLabel/psd.txt"
+        if os.path.isfile(password_file):
+            with open(password_file, "r") as f:
                 stored_password = f.read().strip()
                 if password == stored_password:
                     session['logged_in'] = True
@@ -61,8 +61,8 @@ def login():
                 else:
                     flash('Incorrect password!', 'danger')
         else:
-            # First time setup
-            with open("TrainingImageLabel/psd.txt", "w") as f:
+            # First-time setup: save the password
+            with open(password_file, "w") as f:
                 f.write(password)
             session['logged_in'] = True
             flash('Password set successfully!', 'success')
